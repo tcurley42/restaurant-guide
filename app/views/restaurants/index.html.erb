@@ -1,5 +1,5 @@
 <h1>Restaurants</h1>
-<% Restaurant.each do |r| %>
+<% Restaurant.all.each do |r| %>
   <div class="center info">
     <strong>Name: </strong><%= r.name %><br>
     <strong>Phone: </strong><%= r.phone %><br>
@@ -7,7 +7,7 @@
     <strong>City: </strong><%= r.city %><br>
     <strong>State: </strong><%= r.state %><br>
 
-    <%= link_to "Write a review", new_restaurant_experience_path r.id %>
+    <%= link_to "Write a review", new_restaurant_experience_path(r)  %>
   </div>
   <br>
 <% end %>

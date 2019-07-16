@@ -1,5 +1,6 @@
 class ExperiencesController < ApplicationController
   def new
+    @restaurant = Restaurant.find_by(id: params[:restaurant_id])
   end
 
   def edit
@@ -12,10 +13,16 @@ class ExperiencesController < ApplicationController
   end
 
   def create
-
+    raise binding.params
   end
 
   def update
 
+  end
+
+  private
+
+  def experience_params
+    params.require(:experience).permit(:rating, :description, :user_id, :restaurant_id)
   end
 end

@@ -1,2 +1,13 @@
+<div class="center info">
 <h1>Write a Review</h1>
-<p>Find me in app/views/experiences/new.html.erb</p>
+  <%= form_for Experience.new do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
+    <%= f.label :rating %><br>
+    <%= f.number_field :rating, in: 1.0..10.0, step: 0.1 %><br>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %><br>
+    <%= f.submit "Submit Review" %>
+  <% end %>
+</div>
+
