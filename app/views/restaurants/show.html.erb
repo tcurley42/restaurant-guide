@@ -5,5 +5,14 @@
   <strong>City: </strong><%= @restaurant.city %><br>
   <strong>State: </strong><%= @restaurant.state %><br>
 
-  <%= link_to "Write a Review", new_restaurant_experience_path %>
+  <%= link_to "Write a Review", new_restaurant_experience_path(@restaurant) %>
 </div>
+
+<h1>Reviews</h1>
+<% @restaurant.experiences.each do |experience| %>
+  <div class="center info">
+    <strong>Rating: </strong><%=experience.rating %><br>
+    <strong>Description: </strong><%=experience.description %>
+  </div>
+  <br>
+<% end %>

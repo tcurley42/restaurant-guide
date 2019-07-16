@@ -13,7 +13,9 @@ class ExperiencesController < ApplicationController
   end
 
   def create
-    raise binding.params
+    @experience = Experience.create(experience_params)
+
+    redirect_to restaurant_path(@experience.restaurant)
   end
 
   def update
