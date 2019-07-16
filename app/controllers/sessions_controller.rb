@@ -3,15 +3,27 @@ class SessionsController < ApplicationController
   end
 
   def create
-    raise binding.params
-    @user = User.find_or_create_by(uid: auth['uid']) do |u|
-      u.name = auth['info']['name']
-      u.email = auth['info']['email']
-      u.image = auth['info']['image']
+    if params
+      @user = User.find_by(id: params[:user][:id])
+      puts params
+      puts @user
+      if @user && @user.authenticate(params[:user][:password])
+        session[:user_id] = @user.id
+        redirect_to user_path(@user)
+      else
+        puts "Unauthenticated"
+        redirect_to signin_path
+      end
+    elsif auth
+      @user = User.find_or_create_by(uid: auth['uid']) do |u|
+        u.name = auth['info']['name']
+      end
+      session[:user_id] = @user.id
+      @auth = auth
+    else
+      redirect_to signin_path
     end
 
-    session[:user_id] = @user.id
-    @auth = auth
 
   end
 

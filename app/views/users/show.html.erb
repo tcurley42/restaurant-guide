@@ -1,1 +1,6 @@
-<strong>Name: </strong><%= @user.name %>
+<div class="center info">
+  <h2>My Profile</h2>
+  <strong>Name: </strong><%= @user.name %>
+  <br>
+  <%= link_to "View Restaurants", restaurants_path %>
+</div>

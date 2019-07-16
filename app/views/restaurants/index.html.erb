@@ -1,2 +1,15 @@
-<h1>Restaurants#index</h1>
-<p>Find me in app/views/restaurants/index.html.erb</p>
+<h1>Restaurants</h1>
+<% Restaurant.each do |r| %>
+  <div class="center info">
+    <strong>Name: </strong><%= r.name %><br>
+    <strong>Phone: </strong><%= r.phone %><br>
+    <strong>Address: </strong><%= r.address %><br>
+    <strong>City: </strong><%= r.city %><br>
+    <strong>State: </strong><%= r.state %><br>
+
+    <%= link_to "Write a review", new_restaurant_experience_path r.id %>
+  </div>
+  <br>
+<% end %>
+
+<%= link_to "Create Restaurant", new_restaurant_path %>
