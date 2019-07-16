@@ -1,1 +1,4 @@
 <h1>Welcome to your Restaurant Guide!</h1>
+<% Restaurant.all.each do |r| %>
+  <%= render partial: 'restaurants/form', locals: {r: r} %>
+<% end %>

@@ -1,16 +1,7 @@
-<div class="center info">
-  <strong>Name: </strong><%= @restaurant.name %><br>
-  <strong>Phone: </strong><%= @restaurant.phone %><br>
-  <strong>Address: </strong><%= @restaurant.address %><br>
-  <strong>City: </strong><%= @restaurant.city %><br>
-  <strong>State: </strong><%= @restaurant.state %><br>
-
-  <%= link_to "Write a Review", new_restaurant_experience_path(@restaurant) %>
-</div>
-
+<%= render partial: 'form', locals: {r: @restaurant} %>
 <h1>Reviews</h1>
 <% @restaurant.experiences.each do |experience| %>
-  <div class="center info">
+  <div class="center review">
     <strong>Rating: </strong><%=experience.rating %><br>
     <strong>Description: </strong><%=experience.description %>
   </div>

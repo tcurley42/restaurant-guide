@@ -51,6 +51,18 @@ body {
   text-align: left;
 }
 
+.review {
+  height: 100px;
+  text-align: left;
+  padding: 20px;
+  display: inline-block;
+  background-color: #eeeeee;
+  border-radius: 7px;
+  vertical-align: middle;
+  margin: 10px;
+}
+
+
 .field_with_errors {
   padding: 2px;
   background-color: red;
