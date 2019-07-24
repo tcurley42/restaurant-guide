@@ -1,2 +1,4 @@
-<h1>Experiences#edit</h1>
-<p>Find me in app/views/experiences/edit.html.erb</p>
+<div class="center info">
+  <h1>Edit Review</h1>
+  <%= render partial: 'form', locals: {e: @experience, r: @restaurant, button_text: "Update Review"} %>
+</div>

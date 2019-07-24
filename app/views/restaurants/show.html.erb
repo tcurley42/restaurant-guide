@@ -1,9 +1,10 @@
-<%= render partial: 'form', locals: {r: @restaurant} %>
+<%= render partial: 'display', locals: {r: @restaurant} %>
 <h1>Reviews</h1>
 <% @restaurant.experiences.each do |experience| %>
   <div class="center review">
     <strong>Rating: </strong><%=experience.rating %><br>
-    <strong>Description: </strong><%=experience.description %>
+    <strong>Description: </strong><%=experience.description %><br>
+    <%= link_to "Edit Review", edit_restaurant_experience_path(@restaurant) %>
   </div>
   <br>
 <% end %>

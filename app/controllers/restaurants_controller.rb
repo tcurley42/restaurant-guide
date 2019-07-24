@@ -5,15 +5,15 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find_by(id: params[:id])
-    if @restaurant.nil?
-      redirect_to restaurants_path
-    end
+    redirect_if_nil
   end
 
   def index
   end
 
   def edit
+    @restaurant = Restaurant.find_by(id: params[:id])
+    redirect_if_nil
   end
 
   def create
@@ -23,15 +23,30 @@ class RestaurantsController < ApplicationController
     else
       render :new
     end
+
   end
 
   def update
+    @restaurant = Restaurant.find_by(id: params[:id])
+    redirect_if_nil
 
+    @restaurant.update(restaurant_params)
+    if @restaurant.valid?
+      redirect_to restaurant_path(@restaurant)
+    else
+      render :edit
+    end
   end
 
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :phone, :address, :city, :state)
+    params.require(:restaurant).permit(:name, :phone, :address, :city, :state, :price)
+  end
+
+  def redirect_if_nil
+    if @restaurant.nil?
+      redirect_to restaurants_path
+    end
   end
 end
