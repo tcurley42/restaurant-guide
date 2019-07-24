@@ -1,4 +1,7 @@
 <h1>Welcome to your Restaurant Guide!</h1>
-<% Restaurant.all.each do |r| %>
+<h3><%= link_to "Create New Restaurant", new_restaurant_path %></h3>
+<h3><%= link_to "View All Restaurants", restaurants_path %></h3>
+<h3>Top 5 Restaurants</h3>
+<% Restaurant.highest_price.each do |r| %>
   <%= render partial: 'restaurants/form', locals: {r: r} %>
 <% end %>

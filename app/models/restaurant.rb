@@ -5,4 +5,13 @@ class Restaurant < ApplicationRecord
   has_many :experiences
   has_many :users, through: :experiences
   accepts_nested_attributes_for :experiences
+
+  scope :denver, -> {where(city: "Denver")}
+  scope :highest_price, -> {order('price desc').limit(5)}
+  scope :lowest_price, -> {order('price asc').limit(5)}
+
+  def avg_rating
+    self.experiences.average(:rating)
+  end
+
 end
