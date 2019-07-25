@@ -1,11 +1,15 @@
 class ExperiencesController < ApplicationController
   def new
     @restaurant = Restaurant.find_by(id: params[:restaurant_id])
-    redirect_if_nil
+    @experience = Experience.new(restaurant_id: @restaurant, user_id: current_user.id)
+    if @restaurant.nil?
+      redirect_to restaurants_path
+    end
   end
 
   def edit
     @experience = Experience.find_by(id: params[:id])
+    @restaurant = Restaurant.find_by(id: params[:restaurant_id])
     redirect_if_nil
   end
 

@@ -4,3 +4,10 @@
   <br>
   <%= link_to "View Restaurants", restaurants_path %>
 </div>
+<br>
+<% if !@user.restaurants.empty? %>
+  <h2>Your Restaurants</h2>
+  <% @user.restaurants.uniq.each do |r| %>
+    <%= render partial: 'restaurants/display', locals: {r: r, display_name: true} %>
+  <% end %>
+<% end %>

@@ -12,7 +12,10 @@ class Restaurant < ApplicationRecord
   scope :lowest_price, -> {order('price asc').limit(5)}
 
   def avg_rating
-    self.experiences.average(:rating)
+    if !self.experiences.empty?
+      self.experiences.average(:rating).round(2)
+    else
+      0.0
+    end
   end
-
 end

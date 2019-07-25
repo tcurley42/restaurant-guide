@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if params
+    if params && params[:user]
       @user = User.find_by(id: params[:user][:id])
       puts params
       puts @user
@@ -15,11 +15,13 @@ class SessionsController < ApplicationController
         redirect_to signin_path
       end
     elsif auth
-      @user = User.find_or_create_by(uid: auth['uid']) do |u|
+      @user = User.find_or_create_by(name: auth['info']['name']) do |u|
         u.name = auth['info']['name']
+        u.password = (0...8).map { (65 + rand(26)).chr }.join
       end
       session[:user_id] = @user.id
       @auth = auth
+      redirect_to user_path(@user)
     else
       redirect_to signin_path
     end

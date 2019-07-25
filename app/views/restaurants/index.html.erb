@@ -1,6 +1,6 @@
 <h1>Restaurants</h1>
 <% Restaurant.all.each do |r| %>
-  <%= render partial: 'display', locals: {r: r}%>
+  <%= render partial: 'display', locals: {r: r, display_name: true}%>
   <br>
 <% end %>
 
