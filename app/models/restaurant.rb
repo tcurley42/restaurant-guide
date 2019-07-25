@@ -15,7 +15,7 @@ class Restaurant < ApplicationRecord
     if !self.experiences.empty?
       self.experiences.average(:rating).round(2)
     else
-      0.0
+      "No ratings yet!"
     end
   end
 end
