@@ -22,12 +22,13 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+=begin
   def edit
     @user = current_user
   end
 
   def update
-    @user = current_user
+    @user = User.find_by(id: params[:id])
     @user.update(user_params)
     if @user.valid?
       redirect_to user_path(@user)
@@ -35,6 +36,7 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+=end
 
   private
 

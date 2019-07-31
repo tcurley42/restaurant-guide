@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  before_action :require_login
   def new
     @restaurant = Restaurant.new
   end

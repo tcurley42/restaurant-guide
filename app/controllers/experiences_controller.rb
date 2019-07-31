@@ -1,4 +1,6 @@
 class ExperiencesController < ApplicationController
+  before_action :require_login
+
   def new
     @restaurant = Restaurant.find_by(id: params[:restaurant_id])
     @experience = Experience.new(restaurant_id: @restaurant, user_id: current_user.id)
