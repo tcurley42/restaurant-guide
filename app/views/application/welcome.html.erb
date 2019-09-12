@@ -1,7 +1,17 @@
 <h1>Welcome to your Restaurant Guide!</h1>
 <% if logged_in? %>
   <h3><%= link_to "Create New Restaurant", new_restaurant_path %></h3>
-  <h3><%= link_to "View All Restaurants", restaurants_path %></h3>
+  <h3><a id="all-restaurants" href="#">View All Restaurants</a></h3>
 <% else %>
   <h3>Please login or create an account to continue!</h3>
 <% end %>
+
+
+<script type="text/javascript" charset="utf-8">
+  $("a#all-restaurants").on('click', function(e) {
+      e.preventDefault();
+      $.get('/restaurants', function(data) {
+          debugger
+      })
+  })
+</script>

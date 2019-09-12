@@ -7,9 +7,12 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find_by(id: params[:id])
     redirect_if_nil
+    render json: @restaurant, status: 200
   end
 
   def index
+    @restaurants = Restaurant.all
+    render json: @restaurants, status: 200
   end
 
   def edit
