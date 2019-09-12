@@ -17,7 +17,13 @@
       let posting = $.post("/restaurants", values);
 
       posting.done(function(data) {
-          debugger
-      })
-  })
+          let r = new Restaurant(data["id"], data["name"], data["phone"], data["address"], data["city"], data["state"], data["price"]);
+          $(".restaurantName").html(r.name);
+          $(".restaurantPhone").html(r.phone);
+          $(".restaurantAddress").html(r.fullAddress());
+          $(".restaurantPrice").html(r.price);
+
+          // Add a link to write a review and do that via AJAX too
+      });
+  });
 </script>
