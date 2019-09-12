@@ -5,13 +5,11 @@ class SessionsController < ApplicationController
   def create
     if params && params[:user]
       @user = User.find_by(id: params[:user][:id])
-      puts params
-      puts @user
       if @user && @user.authenticate(params[:user][:password])
         session[:user_id] = @user.id
         redirect_to user_path(@user)
       else
-        puts "Unauthenticated"
+        flash[:message] = "Incorrect username or password!"
         redirect_to signin_path
       end
     elsif auth
@@ -25,8 +23,6 @@ class SessionsController < ApplicationController
     else
       redirect_to signin_path
     end
-
-
   end
 
   def destroy
