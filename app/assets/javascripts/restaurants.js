@@ -1,5 +1,6 @@
 class Restaurant {
-    constructor(name, phone, address, city, state) {
+    constructor(id, name, phone, address, city, state) {
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.address = address;
