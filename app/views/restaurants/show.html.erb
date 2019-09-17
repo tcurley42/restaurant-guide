@@ -7,7 +7,7 @@
     <strong>Rating: </strong><%=experience.rating %><br>
     <strong>Description: </strong><%=experience.description %><br>
     <% if experience.user == current_user %>
-      <%= link_to "Edit Review", edit_restaurant_experience_path(@restaurant, experience) %>
+      <%= link_to "Edit Review", edit_restaurant_experience_path(@restaurant) %>
     <% end %>
   </div>
   <br>

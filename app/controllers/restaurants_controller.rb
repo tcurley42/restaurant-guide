@@ -11,11 +11,6 @@ class RestaurantsController < ApplicationController
 
   def index
     @restaurants = Restaurant.all
-    respond_to do |format|
-      format.html {render :index}
-      format.json {render json: @restaurants, status: 200}
-    end
-
   end
 
   def edit
@@ -24,14 +19,20 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    render json: Restaurant.create(restaurant_params), status: 201
+    @restaurant = Restaurant.create(restaurant_params)
+    if @restaurant.valid?
+      redirect_to restaurant_path(@restaurant)
+    else
+      render :new
+    end
   end
 
   def update
     @restaurant = Restaurant.find_by(id: params[:id])
     redirect_if_nil
 
-    if @restaurant.update(restaurant_params)
+    @restaurant.update(restaurant_params)
+    if @restaurant.valid?
       redirect_to restaurant_path(@restaurant)
     else
       render :edit
